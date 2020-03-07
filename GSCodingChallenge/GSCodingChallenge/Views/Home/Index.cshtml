@@ -1,0 +1,95 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<div class="row">
+    <div class="offset-3 col-6">
+        <select class="form-control">
+            <option disabled selected hidden value="">--</option>
+        </select>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-12">
+        <table class="table" id="mainTable" hidden>
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Project Id</th>
+                    <th scope="col">Start Date</th>
+                    <th scope="col">Time To Start</th>
+                    <th scope="col">End Date</th>
+                    <th scope="col">Credits</th>
+                    <th scope="col">Status</th>
+                </tr>
+            </thead>
+            <tbody id="mainTableBody">
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(function () {
+            fetch('/Home/GetUsers')
+                .then((response) => {
+                    return response.json();
+                })
+                .then((data) => {
+                    $.each(data, function (key, val) {
+                        console.log(val.firstName);
+                        $("select").append('<option value="' + val.id + '">' + val.firstName + " " + val.lastName + '</option>');
+                    });
+                });
+            function CalculateTimeToStart(startDate, assignedDate) {
+                dt1 = new Date(startDate);
+                dt2 = new Date(assignedDate);
+                var dateDifference = (dt1.getTime() - dt2.getTime()) / (1000 * 3600 * 24);
+                if (dateDifference < 0) {
+                    return "Started";
+                }
+                else if (Math.ceil(dateDifference)== 1) {
+                    return "1 Day";
+                }
+                else {
+                    return Math.ceil(dateDifference) + " Days";
+                }
+                return dateDifference;
+            }
+
+            function GetStatus(status) {
+
+                if (status) {
+                    return "Active";
+                }
+                else {
+                    return "Inactive";
+                }
+                return status;
+            }
+
+            $("select").change(function () {
+                var id = $(this).children("option:selected").val();
+                console.log(id);
+                fetch('/Home/GetProjects/' + id)
+                    .then((response) => {
+                        return response.json();
+                    })
+                    .then((data) => {
+                        $("#mainTableBody").empty();
+                        $("#mainTable").removeAttr("hidden");
+                        for (var i = 0; i < data.length; i++) {
+                            var row = "<tr><td>" + data[i].id + "</td><td>" + data[i].startDate + "</td><td>"
+                                + CalculateTimeToStart(data[i].startDate, data[i].assignedDate) + " </td><td>" + data[i].endDate + "</td><td>" + data[i].credits + "</td><td>"
+                                + GetStatus(data[i].status) + "</td></tr>";
+                            $("#mainTable").append(row);
+                        }
+                        console.log(data);
+                    });
+            });
+        });
+    </script>
+}
