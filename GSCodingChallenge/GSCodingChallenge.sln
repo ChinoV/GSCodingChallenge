@@ -6,9 +6,8 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GSCodingChallenge", "GSCodingChallenge\GSCodingChallenge.csproj", "{DF67074B-6E57-42D4-B7D7-6CDBE5AC1B6E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3C8A7F73-31AA-48C3-8DB3-20AE64FA514D}"
-	ProjectSection(SolutionItems) = preProject
-		TextFile1.txt = TextFile1.txt
-	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{1B76002E-690A-4C73-B275-42B61D18DBB2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,6 +19,10 @@ Global
 		{DF67074B-6E57-42D4-B7D7-6CDBE5AC1B6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF67074B-6E57-42D4-B7D7-6CDBE5AC1B6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF67074B-6E57-42D4-B7D7-6CDBE5AC1B6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B76002E-690A-4C73-B275-42B61D18DBB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B76002E-690A-4C73-B275-42B61D18DBB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B76002E-690A-4C73-B275-42B61D18DBB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B76002E-690A-4C73-B275-42B61D18DBB2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
